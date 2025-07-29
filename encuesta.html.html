@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Encuesta de Satisfacción</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+    body {
+      background: linear-gradient(to bottom right, #e1f5fe, #ede7f6);
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .formulario-container {
+      max-width: 780px;
+      margin: 30px auto;
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border-top: 8px solid #5e35b1;
+    }
+
+    .formulario-container h1 {
+      text-align: center;
+      color: #512da8;
+      margin-bottom: 10px;
+    }
+
+    .formulario-container p.subtitle {
+      text-align: center;
+      color: #666;
+      font-size: 15px;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      color: #3949ab;
+      background-color: #f3e5f5;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 18px;
+      margin-top: 35px;
+    }
+
+    label {
+      display: block;
+      margin: 18px 0 6px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #d1c4e9;
+      border-radius: 10px;
+      font-size: 15px;
+      box-sizing: border-box;
+      background-color: #fafafa;
+      transition: all 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #7e57c2;
+      background-color: #fff;
+      outline: none;
+      box-shadow: 0 0 4px rgba(126, 87, 194, 0.3);
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .opciones label {
+      display: block;
+      margin: 4px 0;
+      font-weight: normal;
+      color: #444;
+    }
+
+    .boton {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(to right, #7e57c2, #5c6bc0);
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 30px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .boton:hover {
+      background: linear-gradient(to right, #5e35b1, #3949ab);
+    }
+
+    .respuesta {
+      display: none;
+      margin-top: 30px;
+      background-color: #e8f5e9;
+      border-left: 5px solid #66bb6a;
+      padding: 15px;
+      border-radius: 8px;
+      font-weight: bold;
+      color: #2e7d32;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="formulario-container">
+    <h1>Encuesta de Satisfacción</h1>
+    <p class="subtitle">Gracias por tomarte el tiempo para darnos tu opinión.</p>
+
+    <form id="formEncuesta">
+
+      <h2>Información básica</h2>
+
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="correo">Correo electrónico:</label>
+      <input type="email" id="correo" name="correo" required>
+
+      <label>Calificación general del servicio (1 a 5):</label>
+      <select name="calificacionGeneral" required>
+        <option value="">Seleccione</option>
+        <option value="5">5 - Excelente</option>
+        <option value="4">4 - Muy Bueno</option>
+        <option value="3">3 - Bueno</option>
+        <option value="2">2 - Regular</option>
+        <option value="1">1 - Malo</option>
+      </select>
+
+      <label>Comentarios generales:</label>
+      <textarea name="comentarioGeneral" rows="3"></textarea>
+
+      <h2>Encuesta de Esfuerzo del Cliente (CES)</h2>
+
+      <label>1. ¿Qué tan fácil fue realizar una compra online?</label>
+      <select name="facilidadCompra" required>
+        <option value="">Seleccione</option>
+        <option value="1">1 - Extremadamente difícil</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 - Extremadamente fácil</option>
+      </select>
+
+      <label>2. ¿Encontraste lo que buscabas?</label>
+      <div class="opciones">
+        <label><input type="radio" name="encontrado" value="Sí" required> Sí</label>
+        <label><input type="radio" name="encontrado" value="No"> No</label>
+        <label><input type="radio" name="encontrado" value="No estoy seguro"> No estoy seguro</label>
+      </div>
+
+      <label>3. ¿Cómo podríamos mejorar tu experiencia?</label>
+      <textarea name="mejoras" rows="3"></textarea>
+
+      <h2>Encuesta de Satisfacción del Cliente (CSAT)</h2>
+
+      <label>1. ¿Nivel de satisfacción con la empresa?</label>
+      <select name="satisfaccionEmpresa" required>
+        <option value="">Seleccione</option>
+        <option>Muy satisfecho</option>
+        <option>Satisfecho</option>
+        <option>Ni satisfecho ni insatisfecho</option>
+        <option>Insatisfecho</option>
+        <option>Muy insatisfecho</option>
+      </select>
+
+      <label>2. ¿Cuánto tiempo llevas usando nuestros productos?</label>
+      <select name="tiempoUso" required>
+        <option>Menos de un mes</option>
+        <option>1 a 3 meses</option>
+        <option>3 a 6 meses</option>
+        <option>6 meses a 1 año</option>
+        <option>Más de un año</option>
+      </select>
+
+      <label>3. ¿Con qué frecuencia los usas?</label>
+      <select name="frecuenciaUso" required>
+        <option>Una vez por semana o más</option>
+        <option>2 o 3 veces al mes</option>
+        <option>1 vez al mes</option>
+        <option>Menos de una vez al mes</option>
+      </select>
+
+      <label>4. ¿Recibiste el producto a tiempo?</label>
+      <div class="opciones">
+        <label><input type="radio" name="productoTiempo" value="Sí" required> Sí</label>
+        <label><input type="radio" name="productoTiempo" value="No"> No</label>
+      </div>
+
+      <label>5A. Calidad del producto:</label>
+      <select name="calidad" required>
+        <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+      </select>
+
+      <label>5B. Relación calidad/precio:</label>
+      <select name="relacionCalidadPrecio" required>
+        <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+      </select>
+
+      <label>5C. Rapidez en el servicio:</label>
+      <select name="rapidez" required>
+        <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+      </select>
+
+      <label>6. ¿Recomendarías nuestros productos?</label>
+      <select name="recomendacion" required>
+        <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+        <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+      </select>
+
+      <label>7. ¿Algo más que quieras compartir?</label>
+      <textarea name="comentarioFinal" rows="3"></textarea>
+
+      <button type="submit" class="boton">Enviar Respuestas</button>
+    </form>
+
+    <div class="respuesta" id="respuesta">
+      ¡Gracias! Tus respuestas han sido enviadas con éxito.
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('formEncuesta');
+    const respuesta = document.getElementById('respuesta');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      respuesta.style.display = 'block';
+      form.reset();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+</body>
+</html>

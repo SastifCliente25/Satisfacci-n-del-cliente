@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Satisfacción al Cliente</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .feedback-emoji:hover {
+            transform: scale(1.2);
+            transition: all 0.3s ease;
+        }
+        .sentiment-chart {
+            height: 250px;
+            background: linear-gradient(90deg, #e0f2fe 0%, #f0fdf4 100%);
+        }
+        .customer-journey {
+            background-color: #f8fafc;
+            border-left: 4px solid #3b82f6;
+        }
+        #nps-gauge {
+            stroke-dasharray: 0 100;
+            transition: stroke-dasharray 1s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="mb-10">
+            <h1 class="text-3xl font-bold text-gray-800">SATISFACCION AL CLIENTE</h1>
+            <p class="text-gray-600">Sistema integral de feedback y análisis de experiencia</p>
+        </header>
+
+        <!-- Metrics Dashboard -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <!-- NPS Card -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <svg class="w-full h-32 mx-auto">
+                    <circle cx="50%" cy="50%" r="40" fill="none" stroke="#e2e8f0" stroke-width="8"/>
+                    <circle id="nps-gauge" cx="50%" cy="50%" r="40" fill="none" stroke="#3b82f6" 
+                            stroke-width="8" stroke-linecap="round" transform="rotate(-90 100 100)"/>
+                    <text x="50%" y="50%" text-anchor="middle" dy=".3em" 
+                          class="text-2xl font-bold" fill="#1e3a8a">NPS</text>
+                </svg>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-sm text-gray-500">Net Promoter Score</span>
+                    <span class="text-xl font-bold text-blue-700">72</span>
+                </div>
+            </div>
+
+            <!-- CSAT Card -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="flex items-center justify-center h-32">
+                    <div class="radial-progress text-green-500" style="--value:85; --size:6rem; --thickness:8px;">85%</div>
+                </div>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-sm text-gray-500">Satisfacción (CSAT)</span>
+                    <span class="text-xl font-bold text-green-700">4.3/5</span>
+                </div>
+            </div>
+
+            <!-- Issues Tracking -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="h-32 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-red-500 font-semibold flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                            </svg>
+                            Problemas Pendientes
+                        </h3>
+                        <p class="text-3xl font-bold text-red-600 mt-2">12</p>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div class="bg-red-500 h-2.5 rounded-full" style="width: 60%"></div>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-sm text-gray-500">Resueltos esta semana</span>
+                    <span class="text-xl font-bold text-green-700">8</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedback Channels Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            <!-- Quick Feedback -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Feedback Instantáneo</h3>
+                <div class="flex justify-around mb-4">
+                    <button class="feedback-emoji text-4xl" data-rating="1" title="Muy Insatisfecho">👎</button>
+                    <button class="feedback-emoji text-4xl" data-rating="2" title="Insatisfecho">🙁</button>
+                    <button class="feedback-emoji text-4xl" data-rating="3" title="Neutral">😐</button>
+                    <button class="feedback-emoji text-4xl" data-rating="4" title="Satisfecho">🙂</button>
+                    <button class="feedback-emoji text-4xl" data-rating="5" title="Muy Satisfecho">😍</button>
+                </div>
+                <textarea class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                          rows="3" 
+                          placeholder="¿Qué podemos mejorar? (Opcional)"></textarea>
+                <button class="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition">Enviar Feedback</button>
+            </div>
+
+            <!-- Customer Journey Visualization -->
+            <div class="customer-journey p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Mapa de Experiencia</h3>
+                <img src="https://placehold.co/600x300" alt="Diagrama de jornada del cliente mostrando puntos clave de contacto y áreas de mejora" class="w-full h-auto rounded"/>
+                <div class="flex mt-4 space-x-4">
+                    <div class="flex items-center">
+                        <div class="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
+                        <span class="text-sm">Puntos de contacto</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                        <span class="text-sm">Momentos positivos</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                        <span class="text-sm">Áreas problemáticas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sentiment Analysis -->
+        <div class="bg-white p-6 rounded-lg shadow-md mb-10">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Análisis de Sentimiento</h3>
+            <div class="sentiment-chart rounded-lg p-4 flex items-end justify-between">
+                <div class="h-16 bg-blue-200 w-8 rounded-t" style="height: 30%"></div>
+                <div class="h-24 bg-green-200 w-8 rounded-t" style="height: 60%"></div>
+                <div class="h-16 bg-blue-200 w-8 rounded-t" style="height: 30%"></div>
+                <div class="h-32 bg-yellow-200 w-8 rounded-t" style="height: 80%"></div>
+                <div class="h-20 bg-green-200 w-8 rounded-t" style="height: 50%"></div>
+                <div class="h-8 bg-red-200 w-8 rounded-t" style="height: 20%"></div>
+                <div class="h-40 bg-green-200 w-8 rounded-t" style="height: 100%"></div>
+            </div>
+            <div class="grid
